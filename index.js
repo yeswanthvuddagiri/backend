@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: ["https://careerassistant.netlify.app"],
   methods: ["GET", "POST"],
   credentials: true,
 }));
@@ -166,7 +166,7 @@ app.post("/forgot-password", async (req, res) => {
     user.tokenExpire = Date.now() + 3600000;
     await user.save();
 
-    const resetUrl = `http://localhost:3000/reset-password/${token}`;
+    const resetUrl = `https://careerassistant.netlify.app/reset-password/${token}`;
 
     // Brevo setup
     SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
@@ -261,5 +261,5 @@ app.post("/reset-password/:token", async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on https://careerassistant.netlify.app`);
 });
